@@ -3,9 +3,10 @@ package ex02;
 import java.io.Serializable;
 
 public class KineticEnergy implements Serializable {
-    private double mass;      
-    private double velocity; 
-    private transient double energy;
+    private static final long serialVersionUID = 1L;
+    private double mass;        // маса
+    private double velocity;     // швидкість
+    private double energy;  // кінетична енергія (не буде пропущена під час серіалізації)
 
     public KineticEnergy() {
         this.mass = 0.0;
@@ -19,7 +20,7 @@ public class KineticEnergy implements Serializable {
         this.energy = calculateEnergy();
     }
 
-    private double calculateEnergy() {
+    public double calculateEnergy() {
         return 0.5 * mass * velocity * velocity;
     }
 
@@ -46,7 +47,7 @@ public class KineticEnergy implements Serializable {
     }
 
     public String getBinaryEnergy() {
-        return Integer.toBinaryString((int) energy);
+        return Integer.toBinaryString((int) energy); // двійкове представлення енергії
     }
 
     @Override
